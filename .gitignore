@@ -1,0 +1,62 @@
+report*.html
+log*.html
+033-Documentation/*.html
+output*.xml
+*.jpg
+*.png
+*.log
+.idea
+*.pyc
+*.db
+.DS_Store
+.vscode
+
+# patch files and rejected patches
+*.patch
+*.rej
+*.completed
+
+# logfiles for LogFiles-RPA exercise
+nasa_19950630.22-19950728.12.tsv.gz
+nasa_19950731.22-19950831.22.tsv.gz
+worldcupplayerinfo_20140701.tsv.gz
+nasa_19950630.22-19950728.12.tsv
+nasa_19950731.22-19950831.22.tsv
+worldcupplayerinfo_20140701.tsv
+# .. and ignore all *.tsv for safe measure
+*.tsv
+# .. except for nasa_log.tsv
+!nasa_log.tsv
+
+# Ignore large data files for CSVExcelFiles-RPA exercise
+worldcupplayerinfo_20140701.tsv.gz
+worldcupplayerinfo_20140701.tsv
+worldcupplayers-byjersey.tsv
+worldcupplayers-byjersey.csv
+# As we don't want to commit a modified rem-albums.xlsx we will ignore it
+rem-albums.xlsx
+# .. and ignore all *.csv, *.xlsx for safe measure
+*.csv
+*.xlsx
+# .. except for rem-albums.csv
+!rem-albums.csv
+
+# Ignore database files for Database-RPA exercise
+sakila-db.tar.gz
+sakila-db/
+sakila.mwb
+sakila-data.sql
+sakila-schema.sql
+
+# Ignore stdout and stderr files generate in PowerShell-RPA execise
+*.err
+*.out
+PSDrives.csv
+
+
+ChildDir/
+ChildDir/*
+WriteReadAppend
+WriteReadAppend/*
+ReadWriteAppend
+ReadWriteAppend/*

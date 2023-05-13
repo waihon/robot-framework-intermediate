@@ -1,9 +1,10 @@
 *** Settings ***
 Library  SeleniumLibrary
 
+Suite Setup  Navigate To Home Page
+
 *** Test Cases ***
 Using a suite setup works
-    Navigate To Home Page
     Comment    Using a suite setup to navigate to home page.
 
 *** Keywords ***

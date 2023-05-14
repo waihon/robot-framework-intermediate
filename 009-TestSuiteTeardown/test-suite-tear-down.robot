@@ -2,6 +2,7 @@
 Library  SeleniumLibrary
 
 Suite Setup  Navigate To Home Page
+Suite Teardown  Close Browser
 
 *** Test Cases ***
 Using a suite teardown works

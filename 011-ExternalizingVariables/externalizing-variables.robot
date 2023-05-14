@@ -1,6 +1,8 @@
 *** Settings ***
 Library  SeleniumLibrary
 
+Resource  variables.robot
+
 Suite Setup  Navigate To Home Page
 Suite Teardown  Close Browser
 
@@ -12,7 +14,3 @@ Create an Invoice
 *** Keywords ***
 Navigate To Home Page
     Open Browser    ${SiteUrl}		${Browser}
-
-*** Variables ***
-${SiteUrl}    http://inv.beaufortfairmont.com
-${Browser}     Chrome

@@ -1,5 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
+Library  DateTime
 Resource  resources.robot
 Suite Setup  Navigate To Home Page
 Suite Teardown  Close Browser
@@ -12,9 +13,10 @@ Create an Invoice
     Input Text  company   my example company
     Input Text  type   plumbing
     Input Text  price   34.00
-    Input Text  dueDate   2018-10-31
-    Input Text  comment   Unclogged Drain
     Select From List By Value   selectStatus    Past Due
+    ${today}=  Get Today's Date
+    Input Text  dueDate   ${today}
+    Input Text  comment   Unclogged Drain
     Click Button    createButton
 
 *** Keywords ***
@@ -26,3 +28,7 @@ Navigate To Home Page
 Click Add Invoice
     Click Link  Add Invoice
     Page Should Contain Element     invoiceNo_add
+
+Get Today's Date
+    ${date}=  Get Current Date  result_format=%Y-%m-%d
+    [Return]  ${date}

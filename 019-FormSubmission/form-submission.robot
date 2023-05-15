@@ -15,6 +15,7 @@ Create an Invoice
     Input Text  dueDate   2018-10-31
     Input Text  comment   Unclogged Drain
     Select From List By Value   selectStatus    Past Due
+    Click Button    createButton
 
 
 *** Keywords ***

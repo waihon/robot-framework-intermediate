@@ -8,6 +8,12 @@ Suite Teardown  Close Browser
 *** Test Cases ***
 Create an Invoice
     Click Add Invoice
+    Input Text    invoice    123456789
+    Input Text    company    ACME Inc
+    Input Text    type       Test automation
+    Input Text    price      1234.56
+    Input Text    dueDate    2023-05-15
+    Input Text    comment    Job completed earlier
 
 *** Keywords ***
 Navigate To Home Page

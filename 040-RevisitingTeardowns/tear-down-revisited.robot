@@ -4,22 +4,23 @@ Library  String
 
 Resource  resources.robot
 Suite Setup  Navigate To Home Page
-Suite Teardown  Close Browser
+Suite Teardown  Run Keywords  Delete Invoice  Close Browser
 
 
 *** Test Cases ***
 Create an Invoice
     Click Add Invoice
-    ${invoiceNumber}   Create Invoice Number
+    ${invoiceNumber}=   Create Invoice Number
+    Set Suite Variable  ${invoiceNumber}
     Input Text  invoice   ${invoiceNumber}
     Input Text  company   my example company
     Input Text  type   plumbing
     Input Text  price   34.00
+    Select From List By Value   selectStatus    Past Due
     Input Text  dueDate   2018-10-31
     Input Text  comment   Unclogged Drain
-    Select From List By Value   selectStatus    Past Due
     Click Button    createButton
-    Page Should Contain     ${invoiceNumber}
+    Wait Until Page Contains  ${invoiceNumber}  timeout=5
 
 *** Keywords ***
 Navigate To Home Page
@@ -28,8 +29,13 @@ Navigate To Home Page
 
 Click Add Invoice
     Click Link  Add Invoice
-    Page Should Contain Element     invoiceNo_add
+    Wait Until Page Contains Element     invoiceNo_add
 
 Create Invoice Number
     ${RandomInvoiceNum}    Generate Random String    10    [LETTERS]
     [Return]    ${RandomInvoiceNum}
+
+Delete Invoice
+    Click Link  ${invoiceNumber}
+    Click Button  Delete Invoice
+    Wait Until Page Does Not Contain    ${invoiceNumber}  timeout=5

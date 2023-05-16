@@ -36,6 +36,6 @@ Create Invoice Number
     [Return]    ${RandomInvoiceNum}
 
 Delete Invoice
-    Click Link  ${invoiceNumber}
-    Click Button  Delete Invoice
+    Click Link  css:[id^='invoiceNo_${invoiceNumber}'] > a
+    Click Button    deleteButton
     Wait Until Page Does Not Contain    ${invoiceNumber}  timeout=5

@@ -15,10 +15,11 @@ Create an Invoice
     Input Text  company   my example company
     Input Text  type   plumbing
     Input Text  price   34.00
+    Select From List By Value   selectStatus    Past Due
     Input Text  dueDate   2018-10-31
     Input Text  comment   Unclogged Drain
-    Select From List By Value   selectStatus    Past Due
     Click Button    createButton
+    Page Should Contain  ${invoiceNumber}
 
 
 *** Keywords ***

@@ -15,9 +15,12 @@ Create an Invoice
     Input Text  dueDate   2018-10-31
     Input Text  comment   Unclogged Drain
     # Find a similar but alternative method for selecting "Past Due" as the status
-    Select From List By Value   selectStatus    Past Due
+    #Select From List By Value   selectStatus    Past Due
+    Select From List By Label  selectStatus    Past Due
     # Find an alternative method for clicking the Create button
-    Click Button    createButton
+    #Click Button    createButton
+    #Click Button    Create
+    Click Element   createButton
 
 *** Keywords ***
 Navigate To Home Page
@@ -27,5 +30,6 @@ Navigate To Home Page
 
 Click Add Invoice
     # Find an alternative method for navigating to the Add Invoice page
-    Click Link  Add Invoice
+    #Click Link  Add Invoice
+    Click Element  //*[@id='sidebar-wrapper']/ul/li[4]/a
     Page Should Contain Element     invoiceNo_add

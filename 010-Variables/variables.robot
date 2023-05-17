@@ -3,6 +3,9 @@ Library  SeleniumLibrary
 Suite Setup  Navigate To Home Page
 Suite Teardown  Close Browser
 
+*** Variables ***
+${SITE_URL}  http://inv.beaufortfairmont.com
+${BROWSER}   Chrome
 
 *** Test Cases ***
 Using Variables
@@ -10,4 +13,4 @@ Using Variables
 
 *** Keywords ***
 Navigate To Home Page
-    Open Browser    http://inv.beaufortfairmont.com		Chrome
+    Open Browser  ${SITE_URL}  ${BROWSER}

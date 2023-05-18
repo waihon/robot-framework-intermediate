@@ -1,9 +1,10 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  String
+Library  DateTime
 
 Resource  resources.robot
-Suite Setup  Run Keywords   Navigate To Home Page
+Suite Setup  Run Keywords   Set Suite Variables  Navigate To Home Page
 Suite Teardown  Run Keywords    Delete Invoice If Exists  Close Browser
 
 
@@ -20,7 +21,8 @@ Create an Invoice
     Input Text  comment   Unclogged Drain
     Select From List By Value   selectStatus    Past Due
     Click Button    createButton
-    Page Should Contain     ${invoiceNumber}
+    Wait Until Page Contains     ${invoiceNumber}
+    Capture Page
 
 *** Keywords ***
 Navigate To Home Page
@@ -30,7 +32,8 @@ Navigate To Home Page
 
 Click Add Invoice
     Click Link  Add Invoice
-    Page Should Contain Element     invoiceNo_add
+    Wait Until Page Contains Element     invoiceNo_add
+    Capture Element  invoiceNo_add
 
 Delete Invoice
     [Arguments]  ${invoice_element}
@@ -44,3 +47,14 @@ Delete Invoice If Exists
 Create Invoice Number
     ${RandomInvoiceNum}    Generate Random String    10    [LETTERS]
     [Return]    ${RandomInvoiceNum}
+
+Set Suite Variables
+    ${current_date}=  Get Current Date  result_format=%Y-%m-%d
+    Set Suite Variable  ${current_date}
+
+Capture Page
+    Capture Page Screenshot  filename=selenium-screenshot-${current_date}-{index}.png
+
+Capture Element
+    [Arguments]  ${element}
+    Capture Element Screenshot  ${element}  filename=selenium-element-screenshot-${current_date}-{index}.png

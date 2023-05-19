@@ -1,7 +1,6 @@
 *** Settings ***
 
-Library  String
-
+Library  BuiltIn
 
 *** Test Cases ***
 Catenate Strings

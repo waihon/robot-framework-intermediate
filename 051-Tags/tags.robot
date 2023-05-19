@@ -1,6 +1,23 @@
 *** Settings ***
-Force Tags  Functional
-Default Tags  Invoice Team
+Force Tags  Functional      # All tests unconditionally get this tag
+Default Tags  Invoice Team  # All tests which haven't got any tag get this tag
+
+# To include certain tags:
+# - robot --include tag1 --include tag2 ... --include tagN tags.robot
+# - robot -i tag1 -i tag2 ... -i tagN tags.robot
+# To exclude certain tags:
+# - robot --exclude tag1 --exclude tag2 ... --exclude tagN tags.robot
+# - robot -e tag1 -e tag2 ... -e tagN tags.robot
+# If a tag has space in between, we'll have to use quotes to enclose the tag
+# Examples:
+# - Only the smoke tests:                 robot -i smoke tags.robot
+# - Only the regression tests:            robot -i regression tags.robot
+# - Only known issue #27:                 robot -i KnownIssue-27 tags.robot
+# - All known issues:                     robot -i KnowIssue* tags.robot
+# - Ignore the known failing tests:       robot -e failing tags.robot
+# - Both the smoke and regression tests:  robot -i smoke -i regression tags.robot
+# - Ignore sometimes fails and not ready: robot -e SometimesFails -e NotReady tags.robot
+# - Only the default tag:                 robot -i 'Invoice Team' tags.robot
 
 *** Test Cases ***
 Quick Check On System Status
@@ -24,19 +41,19 @@ Thorough Check Of The Main Page
    Sleep  10secs
 
 Test With Known Issue
-   [Tags]  Regression  Acceptance  KnownIssue-66
+   [Tags]  Regression  Acceptance  KnownIssue-66  Failing
    Log To Console    This test has a known issue
     #  Simulate "some time"
    Sleep  2secs
    Fail  Known Issue #66
 
 Test With Another Known Issue
-   [Tags]  Regression  KnownIssue-27
+   [Tags]  Regression  KnownIssue-27  Failing
    Log To Console    This test has a known issue
    Fail  Known Issue #27
 
 Test That Is Currently Under Development
-   [Tags]  Regression  RunMe
+   [Tags]  Regression  RunMe  NotReady
    Log To Console   Test Script in progress ...
 
 Test With Traceabilty
@@ -44,7 +61,7 @@ Test With Traceabilty
    Log To Console    A test with traceability that verifies requirement A250
 
 Test With New, Unknown Issue
-   [Tags]  Acceptance
+   [Tags]  Acceptance  SometimesFails
    Log To Console    This test presents a new, unknown issue
    Fail  New Issue
 

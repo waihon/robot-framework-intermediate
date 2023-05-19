@@ -19,7 +19,7 @@ Create an Invoice
     Input Text  dueDate   2018-10-31
     Input Text  comment   Unclogged Drain
     Click Button    createButton
-    Page Should Contain  ${invoiceNumber}
+    Wait Until Page Contains  ${invoiceNumber}
 
 
 *** Keywords ***
@@ -29,7 +29,7 @@ Navigate To Home Page
 
 Click Add Invoice
     Click Link  Add Invoice
-    Page Should Contain Element     invoiceNo_add
+    Wait Until Page Contains Element     invoiceNo_add
 
 Create Invoice Number
     ${RandomInvoiceNum}    Generate Random String    10    [LETTERS]

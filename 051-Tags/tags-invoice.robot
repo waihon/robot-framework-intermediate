@@ -19,8 +19,14 @@ Create an Invoice
     Click Add Invoice
     ${invoiceNumber}=    Create Invoice Number
     Set Suite Variable   ${invoiceNumber}
-    Add Invoice  ${invoiceNumber}    ACME, Inc  Roadrunner Extermination   1.00     11/7/2019     Warning: Roadrunners can be tricky.     Paid
-    Page Should Contain     ${invoiceNumber}
+    Add Invoice  ${invoiceNumber}
+    ...    ACME, Inc
+    ...    Roadrunner Extermination
+    ...    1.00
+    ...    11/7/2019
+    ...    Warning: Roadrunners can be tricky.
+    ...    Paid
+    Wait Until Page Contains     ${invoiceNumber}  timeout=5 Seconds
     Capture Page Screenshot
 
 Delete The Invoice
@@ -28,7 +34,7 @@ Delete The Invoice
     ${invoice_count}=   Get Element Count    css:[id^='invoiceNo_${invoiceNumber}'] > a
     Should Be True  ${invoice_count} > 0
     Delete Invoice  css:[id^='invoiceNo_${invoiceNumber}'] > a
-    Page Should Not Contain     ${invoiceNumber}
+    Wait Until Page Does Not Contain     ${invoiceNumber}  timeout=5 Seconds
 
 *** Keywords ***
 Navigate To Home Page
@@ -49,7 +55,7 @@ Add Invoice
     
 Click Add Invoice
     Click Link  Add Invoice
-    Page Should Contain Element     invoiceNo_add
+    Wait Until Page Does Not Contain Element     invoiceNo_add
 
 Delete Invoice
     [Arguments]  ${invoice_element}

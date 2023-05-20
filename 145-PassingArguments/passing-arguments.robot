@@ -2,11 +2,12 @@
 
 *** Test Cases ***
 My Test Case
-  My Log
+  My Log  Hello, world!
 
 
 *** Keywords ***
 My Log
-   Log to Console   This is the message: hello!
+    [Arguments]  ${text}
+    Log to Console   This is the message:  ${text}
 
    

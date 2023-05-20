@@ -1,3 +1,3 @@
 *** Variables ***
-${SiteUrl}    http://34.225.240.91
+${SiteUrl}     http://inv.beaufortfairmont.com
 ${Browser}     Chrome
